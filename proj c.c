@@ -75,7 +75,7 @@ int fonction_nombre_de_mots(char* txt)
             s++;
         }
     }
- // yejem mayoufech b separateur donc ena nthabet ken ekhir 7arf separateur btbi3etha ekhir kelma bch tete7seb sinon nzidha wahdi
+ /* yejem mayoufech b separateur donc ena nthabet ken ekhir 7arf separateur btbi3etha ekhir kelma bch tete7seb sinon nzidha wahdi */
     if ( txt[n-1]=='-' || txt[n-1]=='\'' 
       || (txt[n-1]>='a' && txt[n-1]<='z')
       || (txt[n-1]>='A' && txt[n-1]<='Z') )
