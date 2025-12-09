@@ -204,7 +204,6 @@ int main()
 
         freq = frequence_de_chaque_lettre(texte);
         
-        printf("\n");
         int i;
         for (i = 0; i < 26; i++)
             printf("le caractere %c existe %d fois dans le texte\n", 'a' + i, freq[i]);
@@ -233,3 +232,4 @@ int main()
 
     return 0;
 }
+
