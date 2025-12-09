@@ -52,7 +52,6 @@ int fonction_nombre_de_minuscule(char* texte)
     return s;
 }
 //YASMINE
-// Fonction qui vérifie si un caractère fait partie d'un mot
 int est_caractere_de_mot(char c) {
     return (c >= 'a' && c <= 'z') || 
            (c >= 'A' && c <= 'Z') || 
@@ -60,7 +59,6 @@ int est_caractere_de_mot(char c) {
            c == '\'';
 }
 
-// Fonction qui vérifie si un caractère est un séparateur
 int est_separateur(char c) {
     return c == ' ' || c == ',' || c == '.' || c == '!' ||
            c == '?' || c == ';' || c == ':' || c == '\"' ||
@@ -68,32 +66,32 @@ int est_separateur(char c) {
            c == '[' || c == ']' || c == '/';
 }
 
-// VOTRE FONCTION DE COMPTAGE DES MOTS (même logique)
+//calculer le nombre des mots 
 int fonction_nombre_de_mots(char* txt) {
     int nombre_de_mots = 0;
     int longueur_texte = strlen(txt);
     
     if (longueur_texte == 0) return 0;
     
-    // Gestion du PREMIER caractère
+    // Gestion du 1ere caractere
     if (est_caractere_de_mot(txt[0])) {
         nombre_de_mots = 1;
     }
     
-    // Parcourir le texte à partir du DEUXIÈME caractère
+    // Parcourir le texte a partir du 2eme caractere
     for (int i = 1; i < longueur_texte; i++) {
-        // Vérifier si on a un SÉPARATEUR à la position i
+        // Verifier si on a un SEPARATEUR à la position i
         if (est_separateur(txt[i])) {
-            // Vérifier si le caractère PRÉCÉDENT (i-1) fait partie d'un mot
+            // Verifier si le caractère PRECEDENT (i-1) fait partie d'un mot
             if (est_caractere_de_mot(txt[i-1])) {
-                // Alors on vient de finir un mot, on le compte
+                // Alors fin d'un mot, on le compte
                 nombre_de_mots++;
             }
         }
     }
     
-    // Gestion spéciale pour le DERNIER mot
-    // Si le texte ne se termine pas par un séparateur
+    // Gestion pour le DERNIER mot
+    // Si le texte ne se termine pas par un separateur
     if (longueur_texte > 0 && est_caractere_de_mot(txt[longueur_texte-1])) {
         // Vérifier si le dernier caractère n'est pas un séparateur
         int dernier_est_separateur = est_separateur(txt[longueur_texte-1]);
@@ -272,6 +270,7 @@ int main()
 
     return 0;
 }
+
 
 
 
