@@ -1,9 +1,9 @@
-//YASMINE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+//CHAIMA
 int fonction_nombre_de_lettre(char* texte)
 {
     int s = 0, i;
@@ -15,7 +15,7 @@ int fonction_nombre_de_lettre(char* texte)
 
     return s;
 }
-
+//CHAIMA
 int fonction_nombre_d_espace(char* texte)
 {
     int s = 0, i;
@@ -27,7 +27,7 @@ int fonction_nombre_d_espace(char* texte)
 
     return s;
 }
-
+//CHAIMA
 int fonction_nombre_de_majuscule(char* texte)
 {
     int s = 0, i;
@@ -39,7 +39,7 @@ int fonction_nombre_de_majuscule(char* texte)
 
     return s;
 }
-
+//CHAIMA
 int fonction_nombre_de_minuscule(char* texte)
 {
     int s = 0, i;
@@ -51,27 +51,27 @@ int fonction_nombre_de_minuscule(char* texte)
 
     return s;
 }
-
+//YASMINE
 int fonction_nombre_de_mots(char* txt)
 {
     int s = 0;
     int i;
     int n = strlen(txt);
-    int in_word = 0; // Flag pour savoir si on est dans un mot
+    int dans= 0; // pour savoir si on est dans un mot
 
     for (i = 0; i < n; i++)
     {
         if (isalpha(txt[i]) || txt[i] == '-' || txt[i] == '\'')
         {
-            if (!in_word)
+            if (!dans)
             {
-                in_word = 1;
+                dans = 1;
                 s++;
             }
         }
         else
         {
-            in_word = 0;
+            dans = 0;
         }
     }
 
@@ -93,22 +93,24 @@ char* mots_plus_longue(char texte[]) {
                 debutMot = i;
             }
             longueur_Actuelle++;
-        } else {
+            } 
+        else //wa9t i=n
+        {
             if (longueur_Actuelle > longueurMax) {
                 longueurMax = longueur_Actuelle;
                 debutMotPlusLong = debutMot;
-            }
-            longueur_Actuelle = 0;
+        }
+            longueur_Actuelle = 0; 
         }
     }
 
     if (longueurMax == 0) {
-        char* mot = malloc(1);
+        char* mot = malloc(1*sizeof(char));
         mot[0] = '\0';
         return mot;
     }
 
-    char* mot = malloc(longueurMax + 1);
+    char* mot = malloc(longueurMax + 1); //na9ra 7seb l \0
     for (i = 0; i < longueurMax; i++)
         mot[i] = texte[debutMotPlusLong + i];
     mot[longueurMax] = '\0';
@@ -131,7 +133,7 @@ float longueur_moyenne_des_mots(char* texte)
 
     return longueur_moyenne_des_mots;
 }
-
+//YASMINE
 //Calculer la fréquence de chaque lettre (ex. histogramme des lettres)
 int*  frequence_de_chaque_lettre(char texte[])
 {
@@ -172,7 +174,7 @@ int main()
     char* motPlusLong;
     FILE* fichier;
     
-    //Lire un texte
+    //lire le texte
     char texte[1000];
     
     printf("Entrer le texte:\n");
@@ -207,7 +209,7 @@ int main()
         int i;
         for (i = 0; i < 26; i++)
             printf("le caractere %c existe %d fois dans le texte\n", 'a' + i, freq[i]);
-
+//AMAL
         // Sauvegarder les résultats dans un fichier .txt.
         fichier = fopen("resultats.txt", "w");
 
@@ -232,4 +234,5 @@ int main()
 
     return 0;
 }
+
 
