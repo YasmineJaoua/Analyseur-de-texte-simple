@@ -52,30 +52,68 @@ int fonction_nombre_de_minuscule(char* texte)
     return s;
 }
 //YASMINE
-int fonction_nombre_de_mots(char* txt)
-{
-    int s = 0;
-    int i;
-    int n = strlen(txt);
-    int dans= 0; // pour savoir si on est dans un mot
+// Fonction qui vérifie si un caractère fait partie d'un mot
+int est_caractere_de_mot(char c) {
+    return (c >= 'a' && c <= 'z') || 
+           (c >= 'A' && c <= 'Z') || 
+           c == '-' || 
+           c == '\'';
+}
 
-    for (i = 0; i < n; i++)
-    {
-        if (isalpha(txt[i]) || txt[i] == '-' || txt[i] == '\'')
-        {
-            if (!dans)
-            {
-                dans = 1;
-                s++;
+// Fonction qui vérifie si un caractère est un séparateur
+int est_separateur(char c) {
+    return c == ' ' || c == ',' || c == '.' || c == '!' ||
+           c == '?' || c == ';' || c == ':' || c == '\"' ||
+           c == '@' || c == '&' || c == '(' || c == ')' ||
+           c == '[' || c == ']' || c == '/';
+}
+
+// VOTRE FONCTION DE COMPTAGE DES MOTS (même logique)
+int fonction_nombre_de_mots(char* txt) {
+    int nombre_de_mots = 0;
+    int longueur_texte = strlen(txt);
+    
+    if (longueur_texte == 0) return 0;
+    
+    // Gestion du PREMIER caractère
+    if (est_caractere_de_mot(txt[0])) {
+        nombre_de_mots = 1;
+    }
+    
+    // Parcourir le texte à partir du DEUXIÈME caractère
+    for (int i = 1; i < longueur_texte; i++) {
+        // Vérifier si on a un SÉPARATEUR à la position i
+        if (est_separateur(txt[i])) {
+            // Vérifier si le caractère PRÉCÉDENT (i-1) fait partie d'un mot
+            if (est_caractere_de_mot(txt[i-1])) {
+                // Alors on vient de finir un mot, on le compte
+                nombre_de_mots++;
             }
         }
-        else
-        {
-            dans = 0;
+    }
+    
+    // Gestion spéciale pour le DERNIER mot
+    // Si le texte ne se termine pas par un séparateur
+    if (longueur_texte > 0 && est_caractere_de_mot(txt[longueur_texte-1])) {
+        // Vérifier si le dernier caractère n'est pas un séparateur
+        int dernier_est_separateur = est_separateur(txt[longueur_texte-1]);
+        
+        if (!dernier_est_separateur) {
+            // On doit vérifier qu'on n'a pas déjà compté ce mot
+            // Le mot serait compté seulement si avant lui il y a un séparateur
+            int avant_dernier_est_dans_mot = 0;
+            if (longueur_texte >= 2) {
+                avant_dernier_est_dans_mot = est_caractere_de_mot(txt[longueur_texte-2]);
+            }
+            
+            if (!avant_dernier_est_dans_mot) {
+                // C'est un mot isolé à la fin, on l'ajoute
+                nombre_de_mots++;
+            }
         }
     }
-
-    return s;
+    
+    return nombre_de_mots;
 }
 
 //AMAL
@@ -234,5 +272,6 @@ int main()
 
     return 0;
 }
+
 
 
