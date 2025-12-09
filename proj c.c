@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -72,12 +71,6 @@ int fonction_nombre_de_mots(char* texte) {
     int longueur_texte = strlen(texte);
     
     if (longueur_texte == 0) return 0;
-    
-    // Gestion du 1ere caractere
-    if (est_caractere_de_mot(txt[0])) {
-        nombre_de_mots = 1;
-    }
-    
     // Parcourir le texte a partir du 2eme caractere
     for (int i = 1; i < longueur_texte; i++) {
         // Verifier si on a un separateur
@@ -101,9 +94,11 @@ int fonction_nombre_de_mots(char* texte) {
             }
         }
     }
-    return nombre_de_mots;
-}
-
+//1ere caractere
+    if (est_separateur(txt[0])) {
+        nombre_de_mots -=1;
+    }
+return nombre_de_mots ; }
 //AMAL
 char* mots_plus_longue(char texte[]) {
     int i = 0;
@@ -260,6 +255,7 @@ int main()
 
     return 0;
 }
+
 
 
 
