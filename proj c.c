@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-//CHAIMA
+//yasmine
 int fonction_nombre_de_lettre(char* texte)
 {
     int s = 0, i;
@@ -15,7 +15,7 @@ int fonction_nombre_de_lettre(char* texte)
 
     return s;
 }
-//CHAIMA
+//yasmine
 int fonction_nombre_d_espace(char* texte)
 {
     int s = 0, i;
@@ -27,7 +27,7 @@ int fonction_nombre_d_espace(char* texte)
 
     return s;
 }
-//CHAIMA
+//yasmine
 int fonction_nombre_de_majuscule(char* texte)
 {
     int s = 0, i;
@@ -39,7 +39,7 @@ int fonction_nombre_de_majuscule(char* texte)
 
     return s;
 }
-//CHAIMA
+//yasmine
 int fonction_nombre_de_minuscule(char* texte)
 {
     int s = 0, i;
@@ -51,7 +51,7 @@ int fonction_nombre_de_minuscule(char* texte)
 
     return s;
 }
-//YASMINE
+//yasmine
 int est_caractere_de_mot(char c) {
     return (c >= 'a' && c <= 'z') || 
            (c >= 'A' && c <= 'Z') || 
@@ -67,9 +67,9 @@ int est_separateur(char c) {
 }
 
 //calculer le nombre des mots 
-int fonction_nombre_de_mots(char* txt) {
+int fonction_nombre_de_mots(char* texte) {
     int nombre_de_mots = 0;
-    int longueur_texte = strlen(txt);
+    int longueur_texte = strlen(texte);
     
     if (longueur_texte == 0) return 0;
     
@@ -80,9 +80,9 @@ int fonction_nombre_de_mots(char* txt) {
     
     // Parcourir le texte a partir du 2eme caractere
     for (int i = 1; i < longueur_texte; i++) {
-        // Verifier si on a un SEPARATEUR à la position i
+        // Verifier si on a un separateur
         if (est_separateur(txt[i])) {
-            // Verifier si le caractère PRECEDENT (i-1) fait partie d'un mot
+            //verifier si le caractere precedent (i-1) est un caractere d'un mot
             if (est_caractere_de_mot(txt[i-1])) {
                 // Alors fin d'un mot, on le compte
                 nombre_de_mots++;
@@ -91,26 +91,16 @@ int fonction_nombre_de_mots(char* txt) {
     }
     
     // Gestion pour le DERNIER mot
-    // Si le texte ne se termine pas par un separateur
+    // Si le texte ne se termine pas par un separateur il ne va pas le vois donc on ajoute 1 manuellement 
     if (longueur_texte > 0 && est_caractere_de_mot(txt[longueur_texte-1])) {
         // Vérifier si le dernier caractère n'est pas un séparateur
         int dernier_est_separateur = est_separateur(txt[longueur_texte-1]);
         
         if (!dernier_est_separateur) {
-            // On doit vérifier qu'on n'a pas déjà compté ce mot
-            // Le mot serait compté seulement si avant lui il y a un séparateur
-            int avant_dernier_est_dans_mot = 0;
-            if (longueur_texte >= 2) {
-                avant_dernier_est_dans_mot = est_caractere_de_mot(txt[longueur_texte-2]);
-            }
-            
-            if (!avant_dernier_est_dans_mot) {
-                // C'est un mot isolé à la fin, on l'ajoute
                 nombre_de_mots++;
             }
         }
     }
-    
     return nombre_de_mots;
 }
 
@@ -270,6 +260,7 @@ int main()
 
     return 0;
 }
+
 
 
 
